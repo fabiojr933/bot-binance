@@ -1,0 +1,18 @@
+{
+  "name": "server-binance",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon src/server.js"
+  },
+  "author": "Fabio",
+  "license": "ISC",
+  "dependencies": {
+    "binance-api-node": "^0.12.7",
+    "dotenv": "^16.4.5",
+    "nodemon": "^3.1.3",
+    "winston": "^3.13.0",
+    "ws": "^8.17.0"
+  }
+}
