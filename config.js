@@ -1,8 +1,9 @@
 require("dotenv").config();
 const axios = require('axios');
+const knex = require('./database/config');
 
 class BinanceConfig {
-  constructor() {    
+  constructor() {
     this.tradingPairs = [
       {
         symbol: "BTCUSDT",
@@ -31,12 +32,12 @@ class BinanceConfig {
 
   async updateTradingPairs() {
     for (let pair of this.tradingPairs) {
+      const dados = await knex('moedas').select('*').where({ 'moeda': pair.symbol });
       const currentPrice = await this.getCurrentPrice(pair.symbol);
+      await knex('moedas').update({ valor: currentPrice }).where({ moeda: pair.symbol });
       if (currentPrice !== null) {
-        /*AQUI FAZER A REGRA ACONTECER*/
-        pair.targetBuyPrice = currentPrice;
-        pair.targetSellPrice = currentPrice - 500;
-        console.log(`O preço atual do ${pair.symbol} é: ${currentPrice} USDT`);
+        pair.targetBuyPrice = currentPrice + parseFloat(parseFloat(dados[0].variacao).toFixed(2));
+        pair.targetSellPrice = currentPrice - parseFloat(parseFloat(dados[0].variacao).toFixed(2)); 
       }
     }
 
