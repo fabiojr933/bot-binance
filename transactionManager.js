@@ -3,7 +3,7 @@ const BinanceClient = require('./binanceClient');
 class TransactionManager {
   constructor() {
     this.binanceClient = new BinanceClient();
-    this.TRANSACTION_LIMIT = 20;
+    this.TRANSACTION_LIMIT = 15;
     this.transactionCount = 0;
 
     // Reinicializar o contador de transações a cada 30 segundos

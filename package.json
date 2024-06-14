@@ -9,6 +9,7 @@
   "author": "Fabio",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.7.2",
     "binance-api-node": "^0.12.7",
     "dotenv": "^16.4.5",
     "nodemon": "^3.1.3",

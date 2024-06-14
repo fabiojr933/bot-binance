@@ -2,7 +2,7 @@ const WebSocket = require('ws');
 const BinanceClient = require('./binanceClient');
 
 class WebSocketClient {
-  constructor(tradingPair, transactionManager) {
+  constructor(tradingPair, transactionManager) {   
     this.binanceClient = new BinanceClient();
     this.transactionManager = transactionManager;
     this.symbol = tradingPair.symbol;

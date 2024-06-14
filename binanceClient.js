@@ -1,12 +1,14 @@
-const binance = require('binance-api-node').default;
-const { apiKey, apiSecret } = require('./config');
+const binance = require("binance-api-node").default;
+require("dotenv").config();
+
+const { apiKey, apiSecret } = require("./config");
 
 class BinanceClient {
-  constructor() {
+  constructor() {    
     this.client = binance({
-      apiKey: apiKey,
-      apiSecret: apiSecret,
-      httpBase: 'https://testnet.binance.vision', // Usando o endpoint da Testnet
+      apiKey: process.env.BINANCE_API_KEY,
+      apiSecret: process.env.BINANCE_API_SECRET,
+      httpBase: "https://testnet.binance.vision", // Usando o endpoint da Testnet
     });
   }
 
@@ -14,13 +16,13 @@ class BinanceClient {
     try {
       const order = await this.client.order({
         symbol: symbol,
-        side: 'BUY',
-        type: 'MARKET',
+        side: "BUY",
+        type: "MARKET",
         quantity: quantity,
       });
-      console.log('Compra realizada:', order);
+      console.log("Compra realizada:", order);
     } catch (error) {
-      console.error('Erro ao realizar a compra:', error);
+      console.error("Erro ao realizar a compra:", error);
     }
   }
 
@@ -28,13 +30,13 @@ class BinanceClient {
     try {
       const order = await this.client.order({
         symbol: symbol,
-        side: 'SELL',
-        type: 'MARKET',
+        side: "SELL",
+        type: "MARKET",
         quantity: quantity,
       });
-      console.log('Venda realizada:', order);
+      console.log("Venda realizada:", order);
     } catch (error) {
-      console.error('Erro ao realizar a venda:', error);
+      console.error("Erro ao realizar a venda:", error);
     }
   }
 }
